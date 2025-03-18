@@ -1,34 +1,37 @@
 package tests;
 
 import base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.SignupPage;
 
 public class SignupTest extends BaseTest {
+    private SignupPage signupPage;
+
+    @BeforeMethod
+    public void setUpTest() {
+        super.setUp();
+        signupPage = new SignupPage(driver);
+    }
 
     @Test
-    public void testSignup() throws InterruptedException {
-        String testEmail = "ceravelif@gmail.com";
-
-        SignupPage signupPage = new SignupPage(driver);
+    public void testSignup() {
+        // Signup sayfasına git
         signupPage.goToSignupPage();
-        Thread.sleep(2000); // 2 saniye bekle
 
-        signupPage.enterInitialSignupDetails("Elif Cerav", testEmail);
-        Thread.sleep(2000); // 2 saniye bekle
+        // İlk kayıt detaylarını gir
+        signupPage.enterInitialSignupDetails("Test User", "test" + System.currentTimeMillis() + "@test.com");
 
+        // Form detaylarını doldur
         signupPage.fillSignupForm(
-                "Test123!", // password
-                "Elif", // firstName
-                "Cerav", // lastName
-                "123 Türkiye Sokak", // address
-                "Ankara", // city
-                "Ankara", // state
-                "202525", // zipcode
-                "1234567890" // mobile
+                "password123",
+                "John",
+                "Doe",
+                "123 Test St",
+                "Test City",
+                "Test State",
+                "12345",
+                "1234567890"
         );
-
-        // Test tamamlandıktan sonra 5 saniye bekle
-        Thread.sleep(5000);
     }
 }
