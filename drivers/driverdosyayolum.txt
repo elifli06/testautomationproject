@@ -1,0 +1,1 @@
+System.setProperty("webdriver.chrome.driver", "C:\\Users\\veyse\\OneDrive\\Masaüstü\\chromedriver-win64\\chromedriver.exe");
